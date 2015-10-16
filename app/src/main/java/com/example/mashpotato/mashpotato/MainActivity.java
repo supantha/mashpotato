@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        System.out.print("Arbit testing");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent("android.media.action.VIDEO_CAPTURE");
-                startActivityForResult(intent,CAPTURE_VIDEO_ACTIVITY);
+                startActivityForResult(intent, CAPTURE_VIDEO_ACTIVITY);
             }
         });
     }
