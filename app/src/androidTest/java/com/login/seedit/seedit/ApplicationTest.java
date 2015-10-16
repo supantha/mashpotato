@@ -1,4 +1,4 @@
-package com.example.mashpotato.mashpotato;
+package com.login.seedit.seedit;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
