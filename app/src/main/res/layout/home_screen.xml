@@ -8,13 +8,27 @@
         android:id="@+id/home_screen_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#C03221"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="55dp"
+            android:layout_height="40dp"
+            android:tint="#FFFFFF"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo"/>
+
+
         <TextView
-            android:layout_width="93dp"
-            android:layout_height="15.7dp"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/logo"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:gravity="left"
             android:text="SEED"/>
 
         <ImageButton
@@ -31,8 +45,9 @@
 
         <ImageButton
             android:id="@+id/profile_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="0dp"
@@ -40,7 +55,7 @@
             android:paddingBottom="8dp"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
-            android:src="@drawable/user_profile"/>
+            android:src="@drawable/filter"/>
 
     </RelativeLayout>
 

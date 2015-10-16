@@ -2,6 +2,7 @@ package com.login.seedit.seedit;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,12 +26,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap map) {
         // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(-34, 151);
-        map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
 
         LatLngBounds curScreen = map.getProjection()
                 .getVisibleRegion().latLngBounds;
+
+
+        if (null == map) {
+        }
+        LatLng NE = map.getProjection().getVisibleRegion().latLngBounds.northeast;
+        LatLng SW = map.getProjection().getVisibleRegion().latLngBounds.southwest;
+
+        GPSTracker gps;
+        gps = new GPSTracker(MapsActivity.this);
+
+        // check if GPS enabled
+        if(gps.canGetLocation()){
+
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
+            LatLng presentLoc = new LatLng(latitude, longitude);
+            map.addMarker(new MarkerOptions().position(presentLoc).title("Present Location"));
+            map.moveCamera(CameraUpdateFactory.newLatLng(presentLoc));
+
+
+            // \n is for new line
+            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        }else{
+            // can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gps.showSettingsAlert();
+        }
+
+
+
 
        /* LatLngBounds ne = curScreen.get
         var bounds = map.getBounds();
