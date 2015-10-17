@@ -11,7 +11,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        Button videoButton = (Button) findViewById(R.id.videobutton);
+        ImageButton videoButton = (ImageButton) findViewById(R.id.play);
         videoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -13,9 +13,10 @@ android {
     defaultConfig {
         applicationId "com.login.seedit.seedit"
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
