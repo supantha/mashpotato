@@ -22,14 +22,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/upload_bar"
-        android:id="@+id/cancel_button"
-        android:text="Cancel"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/videobutton"
         android:text="Capture"/>

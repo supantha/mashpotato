@@ -8,34 +8,18 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferType;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
-
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
     static final int CAPTURE_VIDEO_ACTIVITY=1;
     String mCurrentVideoPath;
-    Button cancelButton;
-    TransferUtility transferUtility;
     TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initTransfer();
+        //initTransfer();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,13 +54,6 @@ public class MainActivity extends AppCompatActivity {
                     //intent.putExtra(videoFile);
                     startActivityForResult(intent, CAPTURE_VIDEO_ACTIVITY);
                 }
-            }
-        });
-        cancelButton=(Button) findViewById(R.id.cancel_button);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                transferUtility.cancelAllWithType(TransferType.UPLOAD);
             }
         });
     }
@@ -105,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 Uri selectedVideoUri = data.getData();
                 String selectedPath = getPath(selectedVideoUri);
                 //Toast.makeText(getApplicationContext(),"SELECT_VIDEO Path: " + selectedPath,Toast.LENGTH_SHORT).show();
-                uploadVideo(selectedPath);
-                //Intent intent=new Intent(MainActivity.this,UploadVideoPage.class);
-                //intent.putExtra("path",selectedPath);
-                //MainActivity.this.startActivity(intent);
+                //uploadVideo(selectedPath);
+                Intent intent=new Intent(MainActivity.this,UploadVideoPage.class);
+                intent.putExtra("path",selectedPath);
+                MainActivity.this.startActivity(intent);
 
             } catch (Exception e){
                 System.out.println("Error Encountered");
@@ -170,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         httpclient.getConnectionManager( ).shutdown( );
     } // end of uploadVideo( )*/
 
-    public void initTransfer()
+   /* public void initTransfer()
     {
         CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
                 getApplicationContext(),
@@ -185,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
 
         transferUtility = new TransferUtility(s3, getApplicationContext());
 
-    }
+    }*/
 
-    private void uploadVideo(String videoPath)
+    /*private void uploadVideo(String videoPath)
     {
             File videoFile = new File(videoPath);
             String title = new String("Filename: " + videoPath);
@@ -195,11 +172,11 @@ public class MainActivity extends AppCompatActivity {
 
             final TransferObserver observer = transferUtility.upload(
                     "videoseed",     /* The bucket to upload to */
-                    title,    /* The key for the uploaded object */
-                    videoFile      /* The file where the data to upload exists */
-            );
+                 //  title,    /* The key for the uploaded object */
+                  //  videoFile      /* The file where the data to upload exists */
+    //        );
 
-        Log.v("Observer", observer.toString());
+       /* Log.v("Observer", observer.toString());
         Toast.makeText(getApplicationContext(),observer.getState().toString(),Toast.LENGTH_SHORT).show();
 
        observer.setTransferListener(new TransferListener() {
@@ -225,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
 
 
