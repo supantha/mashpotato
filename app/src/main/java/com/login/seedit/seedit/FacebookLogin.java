@@ -20,12 +20,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
 
 public class FacebookLogin extends AppCompatActivity {
     private CallbackManager callbackManager;
     private TextView info;
+    public String login_response;
     //    private LoginButton loginButton;
     private LoginButton fbbutton;
     @Override
@@ -33,11 +33,9 @@ public class FacebookLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
-//        callbackManager = CallbackManager.Factory.create();
 
         setContentView(R.layout.login_page);
         info = (TextView) findViewById(R.id.info);
-//        loginButton = (LoginButton)findViewById(R.id.login_button);
         fbbutton = (LoginButton) findViewById(R.id.login_button);
         fbbutton.setReadPermissions(Arrays.asList("public_profile, email, user_birthday"));
 
@@ -55,26 +53,22 @@ public class FacebookLogin extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
         fbbutton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             //LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(final LoginResult loginResult) {
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(
                             JSONObject object,
                             GraphResponse response) {
                         // Application code
-                        Log.v("LoginActivity", response.toString());
-                        String message = "";
-                        Iterator<?> keys = object.keys();
-                        while (keys.hasNext()) {
-                            String key = (String) keys.next();
-
-                            try {
-                                message += key + ": " + object.get(key).toString() + "\n";
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                        Log.i("LoginActivity", object.toString());
+                        try {
+                            object.put("access_token", loginResult.getAccessToken().getToken());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+                        login_response = object.toString();
+                        (new com.login.seedit.seedit.DownloadFilesTask()).execute("http://10.1.6.69:3000/user/create_user", login_response);
+
 
                     }
                 });
@@ -84,7 +78,6 @@ public class FacebookLogin extends AppCompatActivity {
                 request.executeAsync();
                 Intent intent = new Intent(FacebookLogin.this, MapsActivity.class);
                 startActivity(intent);
-
             }
 
 

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayoutFragment"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent">
 
     <RelativeLayout
         android:id="@+id/home_screen_header"
@@ -10,7 +10,9 @@
         android:layout_height="wrap_content"
         android:background="#C03221"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/logo"
@@ -27,9 +29,13 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/logo"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="22sp"
             android:gravity="left"
-            android:text="SEED"/>
+            android:textStyle="bold"
+            android:text="SEED"
+            android:layout_toStartOf="@+id/profile"
+            android:layout_toLeftOf="@+id/profile"
+            android:paddingLeft="20dp" />
 
         <ImageButton
             android:id="@+id/profile"
@@ -37,7 +43,7 @@
             android:layout_height="40dp"
             android:scaleType="fitXY"
             android:layout_centerVertical="true"
-            android:layout_marginRight="0dp"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/profile_icon"
             android:background="#00000000"
             android:padding="8dp"
@@ -62,21 +68,135 @@
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/map"
         tools:context=".MapsActivity"
-        android:name="com.google.android.gms.maps.SupportMapFragment" />
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_below="@+id/home_screen_header"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/add_button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
         android:background="#00000000"
-        />
+        android:paddingRight="10dp"
+        android:layout_below="@+id/map"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#FFFFFF">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_gravity="center">
+
+
+            <ImageButton
+                android:id="@+id/nav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/navigate"
+                android:background="#FFFFFFFF"
+                android:layout_above="@+id/textView"
+                android:layout_alignRight="@+id/distance"
+                android:layout_marginRight="10dp" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitXY"
+                android:id="@+id/liker"
+                android:src="@drawable/thumb_up"
+                android:background="#FFFFFFFF"
+                android:layout_alignParentBottom="true"
+                android:layout_alignLeft="@+id/name"
+                android:layout_alignStart="@+id/name"
+                android:layout_marginBottom="26dp" />
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distance"
+                android:textColor="#616161"
+                android:textSize="14dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_alignBottom="@+id/liker"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:text="Card Name yellow yellow"
+                android:textColor="#616161"
+                android:ellipsize="end"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:layout_weight="2.56"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/nav" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="mmmmmmmmmmmmmmmmmmm"
+                android:textColor="#9E9E9E"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:layout_alignBottom="@+id/name"
+                android:layout_alignLeft="@+id/name"
+                android:layout_alignStart="@+id/name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="9999"
+                android:id="@+id/textView"
+                android:layout_alignBottom="@+id/liker"
+                android:layout_alignTop="@+id/liker"
+                android:layout_toRightOf="@+id/liker"
+                android:gravity="center_horizontal|bottom" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:id="@+id/imageView"
+                android:background="#000000"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_below="@+id/name"
+                android:layout_centerHorizontal="true" />
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="25dp"
+                android:id="@+id/play"
+                android:src="@drawable/next_50"
+                android:scaleType="fitXY"
+                android:background="#000000"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="115dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
 </RelativeLayout>

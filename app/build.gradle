@@ -8,10 +8,12 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "com.login.seedit.seedit"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -30,4 +32,9 @@ dependencies {
     compile 'com.android.support:design:23.1.0'
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'
     compile 'com.google.android.gms:play-services:8.1.0'
+    compile 'com.amazonaws:aws-android-sdk-core:2.+'
+    compile 'com.amazonaws:aws-android-sdk-cognito:2.+'
+    compile 'com.amazonaws:aws-android-sdk-s3:2.+'
+    compile 'com.amazonaws:aws-android-sdk-ddb:2.+'
+
 }
